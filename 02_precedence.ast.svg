@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1002" height="698" viewBox="0 0 1002 698" font-family="DejaVu Sans Mono, Menlo, Consolas, monospace" font-size="13">
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<path fill="none" stroke="#9A9890" d="M500.9,54.0 C500.9,77.0 500.9,77.0 500.9,100.0"/>
+<path fill="none" stroke="#9A9890" d="M500.9,188.0 C500.9,211.0 500.9,211.0 500.9,234.0"/>
+<path fill="none" stroke="#9A9890" d="M500.9,286.0 C500.9,309.0 112.2,309.0 112.2,332.0"/>
+<path fill="none" stroke="#9A9890" d="M500.9,286.0 C500.9,309.0 395.8,309.0 395.8,332.0"/>
+<path fill="none" stroke="#9A9890" d="M500.9,286.0 C500.9,309.0 645.6,309.0 645.6,332.0"/>
+<path fill="none" stroke="#9A9890" d="M500.9,286.0 C500.9,309.0 889.5,309.0 889.5,332.0"/>
+<path fill="none" stroke="#9A9890" d="M112.2,420.0 C112.2,443.0 112.2,443.0 112.2,466.0"/>
+<path fill="none" stroke="#9A9890" d="M112.2,518.0 C112.2,541.0 51.5,541.0 51.5,564.0"/>
+<path fill="none" stroke="#9A9890" d="M112.2,518.0 C112.2,541.0 173.0,541.0 173.0,564.0"/>
+<path fill="none" stroke="#9A9890" d="M173.0,598.0 C173.0,621.0 132.5,621.0 132.5,644.0"/>
+<path fill="none" stroke="#9A9890" d="M173.0,598.0 C173.0,621.0 213.5,621.0 213.5,644.0"/>
+<path fill="none" stroke="#9A9890" d="M395.8,420.0 C395.8,443.0 395.8,443.0 395.8,466.0"/>
+<path fill="none" stroke="#9A9890" d="M395.8,518.0 C395.8,541.0 335.0,541.0 335.0,564.0"/>
+<path fill="none" stroke="#9A9890" d="M395.8,518.0 C395.8,541.0 456.5,541.0 456.5,564.0"/>
+<path fill="none" stroke="#9A9890" d="M335.0,598.0 C335.0,621.0 294.5,621.0 294.5,644.0"/>
+<path fill="none" stroke="#9A9890" d="M335.0,598.0 C335.0,621.0 375.5,621.0 375.5,644.0"/>
+<path fill="none" stroke="#9A9890" d="M645.6,420.0 C645.6,443.0 645.6,443.0 645.6,466.0"/>
+<path fill="none" stroke="#9A9890" d="M645.6,518.0 C645.6,541.0 583.8,541.0 583.8,564.0"/>
+<path fill="none" stroke="#9A9890" d="M645.6,518.0 C645.6,541.0 707.3,541.0 707.3,564.0"/>
+<path fill="none" stroke="#9A9890" d="M583.8,598.0 C583.8,621.0 541.4,621.0 541.4,644.0"/>
+<path fill="none" stroke="#9A9890" d="M583.8,598.0 C583.8,621.0 626.3,621.0 626.3,644.0"/>
+<path fill="none" stroke="#9A9890" d="M889.5,366.0 C889.5,416.0 889.5,416.0 889.5,466.0"/>
+<path fill="none" stroke="#9A9890" d="M889.5,500.0 C889.5,532.0 828.8,532.0 828.8,564.0"/>
+<path fill="none" stroke="#9A9890" d="M889.5,500.0 C889.5,532.0 950.3,532.0 950.3,564.0"/>
+<path fill="none" stroke="#9A9890" d="M828.8,598.0 C828.8,621.0 788.3,621.0 788.3,644.0"/>
+<path fill="none" stroke="#9A9890" d="M828.8,598.0 C828.8,621.0 869.3,621.0 869.3,644.0"/>
+<rect x="461.6" y="20.0" width="78.6" height="34.0" rx="5" fill="#F1EFE8" stroke="#888780"/>
+<text fill="#2C2C2A" font-weight="bold" x="500.9" y="37.0" text-anchor="middle" dominant-baseline="central">Program</text>
+<rect x="422.6" y="100.0" width="156.6" height="88.0" rx="5" fill="#F1EFE8" stroke="#888780"/>
+<text fill="#2C2C2A" font-weight="bold" x="500.9" y="117.0" text-anchor="middle" dominant-baseline="central">FunDecl</text>
+<text fill="#2C2C2A" x="500.9" y="135.0" text-anchor="middle" dominant-baseline="central">name: main</text>
+<text fill="#2C2C2A" x="500.9" y="153.0" text-anchor="middle" dominant-baseline="central">params: []</text>
+<text fill="#2C2C2A" x="500.9" y="171.0" text-anchor="middle" dominant-baseline="central">f_type: () -&gt; Int</text>
+<rect x="469.4" y="234.0" width="63.0" height="52.0" rx="5" fill="#EEEDFE" stroke="#7F77DD"/>
+<text fill="#888780" font-size="11" x="500.9" y="251.0" text-anchor="middle" dominant-baseline="central">body</text>
+<text fill="#3C3489" font-weight="bold" x="500.9" y="269.0" text-anchor="middle" dominant-baseline="central">Block</text>
+<rect x="49.6" y="332.0" width="125.4" height="88.0" rx="5" fill="#EEEDFE" stroke="#7F77DD"/>
+<text fill="#3C3489" font-weight="bold" x="112.2" y="349.0" text-anchor="middle" dominant-baseline="central">LocalDecl</text>
+<text fill="#3C3489" x="112.2" y="367.0" text-anchor="middle" dominant-baseline="central">name: a</text>
+<text fill="#3C3489" x="112.2" y="385.0" text-anchor="middle" dominant-baseline="central">var_type: Int</text>
+<text fill="#3C3489" x="112.2" y="403.0" text-anchor="middle" dominant-baseline="central">dims: []</text>
+<rect x="61.2" y="466.0" width="102.0" height="52.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#888780" font-size="11" x="112.2" y="483.0" text-anchor="middle" dominant-baseline="central">init</text>
+<text fill="#085041" font-weight="bold" x="112.2" y="501.0" text-anchor="middle" dominant-baseline="central">Binary Add</text>
+<rect x="20.0" y="564.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="51.5" y="581.0" text-anchor="middle" dominant-baseline="central">Int 1</text>
+<rect x="118.1" y="564.0" width="109.8" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="173.0" y="581.0" text-anchor="middle" dominant-baseline="central">Binary Mult</text>
+<rect x="101.0" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="132.5" y="661.0" text-anchor="middle" dominant-baseline="central">Int 2</text>
+<rect x="182.0" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="213.5" y="661.0" text-anchor="middle" dominant-baseline="central">Int 3</text>
+<rect x="333.1" y="332.0" width="125.4" height="88.0" rx="5" fill="#EEEDFE" stroke="#7F77DD"/>
+<text fill="#3C3489" font-weight="bold" x="395.8" y="349.0" text-anchor="middle" dominant-baseline="central">LocalDecl</text>
+<text fill="#3C3489" x="395.8" y="367.0" text-anchor="middle" dominant-baseline="central">name: b</text>
+<text fill="#3C3489" x="395.8" y="385.0" text-anchor="middle" dominant-baseline="central">var_type: Int</text>
+<text fill="#3C3489" x="395.8" y="403.0" text-anchor="middle" dominant-baseline="central">dims: []</text>
+<rect x="340.9" y="466.0" width="109.8" height="52.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#888780" font-size="11" x="395.8" y="483.0" text-anchor="middle" dominant-baseline="central">init</text>
+<text fill="#085041" font-weight="bold" x="395.8" y="501.0" text-anchor="middle" dominant-baseline="central">Binary Mult</text>
+<rect x="284.0" y="564.0" width="102.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="335.0" y="581.0" text-anchor="middle" dominant-baseline="central">Binary Add</text>
+<rect x="263.0" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="294.5" y="661.0" text-anchor="middle" dominant-baseline="central">Int 1</text>
+<rect x="344.0" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="375.5" y="661.0" text-anchor="middle" dominant-baseline="central">Int 2</text>
+<rect x="425.0" y="564.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="456.5" y="581.0" text-anchor="middle" dominant-baseline="central">Int 3</text>
+<rect x="582.9" y="332.0" width="125.4" height="88.0" rx="5" fill="#EEEDFE" stroke="#7F77DD"/>
+<text fill="#3C3489" font-weight="bold" x="645.6" y="349.0" text-anchor="middle" dominant-baseline="central">LocalDecl</text>
+<text fill="#3C3489" x="645.6" y="367.0" text-anchor="middle" dominant-baseline="central">name: c</text>
+<text fill="#3C3489" x="645.6" y="385.0" text-anchor="middle" dominant-baseline="central">var_type: Int</text>
+<text fill="#3C3489" x="645.6" y="403.0" text-anchor="middle" dominant-baseline="central">dims: []</text>
+<rect x="594.6" y="466.0" width="102.0" height="52.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#888780" font-size="11" x="645.6" y="483.0" text-anchor="middle" dominant-baseline="central">init</text>
+<text fill="#085041" font-weight="bold" x="645.6" y="501.0" text-anchor="middle" dominant-baseline="central">Binary Sub</text>
+<rect x="532.8" y="564.0" width="102.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="583.8" y="581.0" text-anchor="middle" dominant-baseline="central">Binary Sub</text>
+<rect x="506.0" y="644.0" width="70.8" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="541.4" y="661.0" text-anchor="middle" dominant-baseline="central">Int 10</text>
+<rect x="594.8" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="626.3" y="661.0" text-anchor="middle" dominant-baseline="central">Int 4</text>
+<rect x="675.8" y="564.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="707.3" y="581.0" text-anchor="middle" dominant-baseline="central">Int 3</text>
+<rect x="854.1" y="332.0" width="70.8" height="34.0" rx="5" fill="#EEEDFE" stroke="#7F77DD"/>
+<text fill="#3C3489" font-weight="bold" x="889.5" y="349.0" text-anchor="middle" dominant-baseline="central">Return</text>
+<rect x="838.5" y="466.0" width="102.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="889.5" y="483.0" text-anchor="middle" dominant-baseline="central">Binary Add</text>
+<rect x="777.8" y="564.0" width="102.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="828.8" y="581.0" text-anchor="middle" dominant-baseline="central">Binary Add</text>
+<rect x="756.8" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="788.3" y="661.0" text-anchor="middle" dominant-baseline="central">Var a</text>
+<rect x="837.8" y="644.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="869.3" y="661.0" text-anchor="middle" dominant-baseline="central">Var b</text>
+<rect x="918.8" y="564.0" width="63.0" height="34.0" rx="5" fill="#E1F5EE" stroke="#1D9E75"/>
+<text fill="#085041" font-weight="bold" x="950.3" y="581.0" text-anchor="middle" dominant-baseline="central">Var c</text>
+</svg>
