@@ -1,0 +1,25 @@
+// EXPECT: 12345
+// A1 example 3: nested `for` loops over an array (bubble sort).
+// The inner bound depends on the outer loop variable.
+sort(a: int[]) {
+    n: int = length(a)
+    for i: int = 0; i < n - 1; i = i + 1 {
+        for j: int = 0; j < n - 1 - i; j = j + 1 {
+            if a[j] > a[j + 1] {
+                t: int = a[j]
+                a[j] = a[j + 1]
+                a[j + 1] = t
+            }
+        }
+    }
+}
+
+main() : int {
+    a: int[] = {5, 3, 4, 1, 2}
+    sort(a)
+    r: int = 0
+    for k: int = 0; k < length(a); k = k + 1 {
+        r = r * 10 + a[k]
+    }
+    return r
+}

@@ -1,0 +1,15 @@
+// EXPECT: 6
+// A1 example 4: Euclid's algorithm with `do/while`.
+// The guard reads a variable declared inside the loop body.
+gcd(a: int, b: int) : int {
+    do {
+        r: int = a % b
+        a = b
+        b = r
+    } while (r != 0)
+    return a
+}
+
+main() : int {
+    return gcd(48, 18)
+}

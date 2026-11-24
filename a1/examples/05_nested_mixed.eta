@@ -1,0 +1,41 @@
+// EXPECT: 4
+// A1 example 5: `for` inside `do/while` inside `for`, plus nested `do/while`.
+// Counts the primes below 10 by trial division.
+is_prime(n: int) : bool {
+    if n < 2 {
+        return false
+    }
+    d: int = 2
+    prime: bool = true
+    do {
+        if d < n {
+            if n % d == 0 {
+                prime = false
+            }
+        }
+        d = d + 1
+    } while (d < n)
+    return prime
+}
+
+main() : int {
+    count: int = 0
+    for n: int = 0; n < 10; n = n + 1 {
+        if is_prime(n) {
+            count = count + 1
+        }
+    }
+    // Two nested do/whiles: each one gets its own hidden flag.
+    outer: int = 0
+    do {
+        inner: int = 0
+        do {
+            inner = inner + 1
+        } while (inner < 3)
+        outer = outer + inner
+    } while (outer < 9)
+    if outer == 9 {
+        return count
+    }
+    return -1
+}

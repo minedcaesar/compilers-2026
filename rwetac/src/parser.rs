@@ -691,7 +691,7 @@ pub fn parse_assignment_no_semi(&mut self) -> PResult<Statement> {
         let span_key = self.expect(Token::For)?;
         let i_decl = self.parse_statement()?;
         let guard = self.parse_expression(0)?;
-        self.consume();
+        self.expect(Token::Semicolon)?;
         let assignment = self.parse_assignment_no_semi()?;
         let block = self.parse_statement()?;
         let while_body=Box::new(Statement{kind:StatementKind::Compound(Block{stmts:vec![block,assignment]}),span:span_key.clone()});

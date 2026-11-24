@@ -1,0 +1,15 @@
+// EXPECT: 51
+// A1 example 2: `do/while` runs its body at least once.
+// digits(0) must be 1, which a plain `while n > 0` loop would get wrong (0).
+digits(n: int) : int {
+    count: int = 0
+    do {
+        count = count + 1
+        n = n / 10
+    } while (n > 0)
+    return count
+}
+
+main() : int {
+    return digits(0) + digits(12345) * 10
+}
