@@ -131,6 +131,10 @@ pub enum Token {
     True,
     #[token("false")]
     False,
+    #[token("do")]
+    Do,
+    #[token("for")]
+    For,
     // Easier for Semicolon Insertion
     #[regex(r"\n+")]
     Newline,

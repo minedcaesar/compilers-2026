@@ -81,7 +81,7 @@ pub struct VarDeclaration {
     pub name: String,
     /// Optional initializer expression (e.g. the `5` in `x: int = 5`).
     pub init: Option<Expression>,
-    /// The declared type. For arrays, this is the full nested
+    /// The declared type. For arrays, this is the  ll nested
     /// [`Type::Array`] constructed from the base type and `dims`.
     pub var_type: Type,
     /// Array dimension expressions, empty for scalar variables.

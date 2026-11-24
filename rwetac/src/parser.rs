@@ -414,6 +414,8 @@ impl<'a> Parser<'a> {
     pub fn parse_statement(&mut self) -> PResult<Statement> {
         match self.peek() {
             Token::If => self.parse_if(),
+            Token::Do => self.parse_do_while(),
+            Token::For => self.parse_for(),
             Token::While => self.parse_while(),
             Token::Return => self.parse_return(),
             Token::Var(_) | Token::Int(_) => {
@@ -508,6 +510,104 @@ impl<'a> Parser<'a> {
         }
     }
 
+
+
+
+
+pub fn parse_assignment_no_semi(&mut self) -> PResult<Statement> {
+        match self.peek() {
+            Token::Var(_) | Token::Int(_) => {
+                // could be assignment or declaration or prcedure call.
+                match self.peek_n(1) {
+                    Token::LParen => self.parse_procedure(),
+                    // If it is multi assign then it can contain variable declartions!
+                    // a :int, b = 2, 4 is a multi assign!
+                    // a.field = 2 a = 4 b, c[1] = 5 a, a[1] = 3, 4 a : int, b = 2, 3
+                    //
+                    _ => {
+                        // Assign or declaration
+                        let mut lvals = self.parse_lvals()?;
+                        // If only one element and its declaratoin then we have a normal declaration and try to parse an initialzier
+                        if lvals.len() == 1 && matches!(&lvals[0], LVal::V(_)) {
+                            // parse initialzer
+                            if let LVal::V(mut vd) = lvals.pop().unwrap() {
+                                let (init, init_span) = match self.peek() {
+                                    Token::Equal => {
+                                        self.consume();
+                                        let expr = self.parse_expression(0)?;
+                                        let expr_span = expr.span.clone();
+                                        (Some(expr), expr_span)
+                                    }
+                                    _ => (None, vd.span.clone()),
+                                };
+
+                                vd.init = init;
+                                // println!("Full Local : {:?}", vd);
+                                let vd_span = vd.span.clone();
+                                let kind = StatementKind::LocalDecl(vd);
+                                Ok(Statement {
+                                    kind,
+                                    span: vd_span.merge(&init_span),
+                                })
+                            } else {
+                                unreachable!("Should not be possible")
+                            }
+                        } else {
+                            // Need to parse equal and rhs
+                            self.expect(Token::Equal)?;
+                            // Relies on Semicolon
+                            let rhs = self.parse_sep_list_comma(Token::Semicolon, |p| {
+                                p.parse_expression(0)
+                            })?;
+
+                            let span_start = lvals.first().unwrap().span();
+                            let span_last = rhs.last().unwrap().span.clone();
+                            let kind = StatementKind::Assign { lhs: lvals, rhs };
+                            Ok(Statement {
+                                kind,
+                                span: span_start.merge(&span_last),
+                            })
+                        }
+                    }
+                }
+            }
+            // { block }
+            Token::LBrace => {
+                let span_start = self.expect(Token::LBrace)?;
+                let block = self.parse_block()?;
+                let span_end = self.expect(Token::RBrace)?;
+                // The lexer only inserts the terminating semicolon when a newline
+                // follows `}`, so in `} else {` there is none.
+                if *self.peek() != Token::Else {
+                    self.expect(Token::Semicolon)?;
+                }
+                let kind = StatementKind::Compound(Block { stmts: block });
+                Ok(Statement {
+                    kind,
+                    span: span_start.merge(&span_end),
+                })
+            }
+            _ => {
+                // `.`, `(`, `[` and the binary operators can only continue an
+                // expression, so seeing one here means the previous line was
+                // ended by an inserted semicolon.
+                let tok = self.peek().clone();
+                let continues_expr = self.peek_binop().is_some()
+                    || matches!(tok, Token::Dot | Token::LParen | Token::LBrack);
+                let msg = if continues_expr {
+                    "A statement cannot start with this token. The line break above ended the \
+                     previous statement. To continue that expression instead, move this token \
+                     to the end of the previous line"
+                        .to_string()
+                } else {
+                    "Unexpected Token".to_string()
+                };
+                Err(ParserError::UnexpectedToken(msg, tok, self.peek_span()))
+            }
+        }
+    }
+
+
     fn parse_return(&mut self) -> PResult<Statement> {
         let span_key = self.expect(Token::Return)?;
         // Relies on Semicolon
@@ -585,6 +685,74 @@ impl<'a> Parser<'a> {
             kind,
             span: span_name.merge(&span_end),
         })
+    }
+    
+    fn parse_for(&mut self) -> PResult<Statement> {
+        let span_key = self.expect(Token::For)?;
+        let i_decl = self.parse_statement()?;
+        let guard = self.parse_expression(0)?;
+        self.consume();
+        let assignment = self.parse_assignment_no_semi()?;
+        self.consume();
+        let mut block = self.parse_block()?;
+        self.consume();
+        block.push(assignment);
+        let while_body=Box::new(Statement{kind:StatementKind::Compound(Block{stmts:block}),span:span_key.clone()});
+        let while_statement = StatementKind::While{guard:guard,body:while_body};
+        let stmts=vec![i_decl,Statement{kind:while_statement,span:span_key.clone()}];
+        let kind=StatementKind::Compound(Block{stmts:stmts});
+        self.consume();
+        Ok(Statement{kind:kind,span:span_key.clone()})
+    }
+    
+    fn parse_do_while(&mut self) -> PResult<Statement> {
+            let span_key = self.expect(Token::Do)?;
+            let go_declaration = StatementKind::LocalDecl(VarDeclaration{
+                name:"#go".to_string(),
+            init:Some(Expression{kind : ExpressionKind::Bool(true),span:span_key.clone()}),
+            var_type:Type::Bool,
+            span:span_key.clone(),
+            dims:vec![],
+            });
+            let span_start = self.expect(Token::LBrace)?;
+            let mut block = self.parse_block()?;
+            let span_end = self.expect(Token::RBrace)?;
+            if *self.peek() ==Token::Semicolon{
+                self.consume();
+            } 
+
+        
+            self.expect(Token::While)?;
+            let guard = self.parse_expression(0)?;
+            let guard_span = guard.span.clone();
+            self.expect(Token::Semicolon)?;
+            let go_assignment = StatementKind::Assign{
+                lhs: vec![LVal::E(Expression{
+                    kind:ExpressionKind::Var("#go".to_string()),
+                span : span_key.clone()})],
+                rhs:vec![guard]
+            };
+            
+            block.push(Statement{kind:go_assignment,span:guard_span});
+            let kind = StatementKind::Compound(Block { stmts: block });
+            let body = Box::new(Statement {
+                kind,
+                span: span_start.merge(&span_end)
+            });
+            
+            let while_statement = StatementKind::While{guard: Expression{
+                kind:ExpressionKind::Var("#go".to_string()),span:span_key.clone()},
+                body:body
+        };
+
+            let kind = StatementKind::Compound(Block{stmts:vec![Statement{
+                kind:go_declaration,
+                span:span_key.clone()},
+                Statement{kind:while_statement,span:span_key.clone()}]});
+            Ok(Statement{kind:kind,span:span_key.clone()})
+
+
+
     }
 
     fn parse_while(&mut self) -> PResult<Statement> {
