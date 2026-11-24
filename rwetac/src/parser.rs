@@ -693,15 +693,11 @@ pub fn parse_assignment_no_semi(&mut self) -> PResult<Statement> {
         let guard = self.parse_expression(0)?;
         self.consume();
         let assignment = self.parse_assignment_no_semi()?;
-        self.consume();
-        let mut block = self.parse_block()?;
-        self.consume();
-        block.push(assignment);
-        let while_body=Box::new(Statement{kind:StatementKind::Compound(Block{stmts:block}),span:span_key.clone()});
+        let block = self.parse_statement()?;
+        let while_body=Box::new(Statement{kind:StatementKind::Compound(Block{stmts:vec![block,assignment]}),span:span_key.clone()});
         let while_statement = StatementKind::While{guard:guard,body:while_body};
         let stmts=vec![i_decl,Statement{kind:while_statement,span:span_key.clone()}];
         let kind=StatementKind::Compound(Block{stmts:stmts});
-        self.consume();
         Ok(Statement{kind:kind,span:span_key.clone()})
     }
     
