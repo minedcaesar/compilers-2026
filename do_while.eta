@@ -1,5 +1,8 @@
 main() :int{
-    for i:int =0; i < 4; i = i+1{
-        
+    x:int=0;
+    for i: int = 0; i<10;i=i+1 {
+        x = x +1
+        return 1
     }
+    return x
 }

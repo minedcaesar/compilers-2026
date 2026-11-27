@@ -75,6 +75,17 @@ fn asi_hint(found: &Token) -> &'static str {
     }
 }
 
+fn always_returns(s: &Statement) -> bool {
+    match &s.kind {
+        StatementKind::Return(_) => true,
+        StatementKind::Compound(b) => b.stmts.last().is_some_and(always_returns),
+        StatementKind::If { then_br, else_br: Some(e), .. } => {
+            always_returns(then_br) && always_returns(e)
+        }
+        _ => false,
+    }
+}
+
 /// A recursive descent parser for the ETA language.
 ///
 /// Wraps a [`Lexer`] in a [`PeekMoreIterator`] to allow bounded lookahead.
@@ -694,7 +705,16 @@ pub fn parse_assignment_no_semi(&mut self) -> PResult<Statement> {
         self.expect(Token::Semicolon)?;
         let assignment = self.parse_assignment_no_semi()?;
         let block = self.parse_statement()?;
-        let while_body=Box::new(Statement{kind:StatementKind::Compound(Block{stmts:vec![block,assignment]}),span:span_key.clone()});
+        let mut stmts =vec![];
+        if !always_returns(&block) {
+             stmts = vec![block,assignment];
+        }
+        else{
+             stmts=vec![block];
+        }
+
+        let while_body=Box::new(Statement{kind:StatementKind::Compound(Block{stmts:stmts}),span:span_key.clone()});
+        
         let while_statement = StatementKind::While{guard:guard,body:while_body};
         let stmts=vec![i_decl,Statement{kind:while_statement,span:span_key.clone()}];
         let kind=StatementKind::Compound(Block{stmts:stmts});
@@ -728,8 +748,9 @@ pub fn parse_assignment_no_semi(&mut self) -> PResult<Statement> {
                 span : span_key.clone()})],
                 rhs:vec![guard]
             };
-            
-            block.push(Statement{kind:go_assignment,span:guard_span});
+            if !block.last().is_some_and(always_returns){
+                block.push(Statement{kind:go_assignment,span:guard_span});
+            }
             let kind = StatementKind::Compound(Block { stmts: block });
             let body = Box::new(Statement {
                 kind,
